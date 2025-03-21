@@ -209,6 +209,14 @@ const QuickAccess = (props) => {
       rate: 280,
       cost: 70,
     },
+    {
+      name: "Jalebi",
+      quantity: ".25",
+      rate_flag: false,
+      image: "/jalebi.jpeg",
+      rate: 280,
+      cost: 70,
+    },
   ];
 
   return (
