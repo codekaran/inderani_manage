@@ -1,13 +1,6 @@
 const QuickAccess = (props) => {
   const quickList = [
-    {
-      name: "Samosa",
-      image: "/samosa.jpeg",
-      quantity: "1",
-      rate_flag: false,
-      rate: 15,
-      cost: 15,
-    },
+
     {
       name: "Rasmalai Pc",
       quantity: "1",
@@ -47,14 +40,6 @@ const QuickAccess = (props) => {
       image: "/lassi.jpeg",
       rate: 60,
       cost: 60,
-    },
-    {
-      name: "Bread",
-      quantity: "1",
-      rate_flag: false,
-      image: "/bread.jpg",
-      rate: 20,
-      cost: 20,
     },
     {
       name: "Gulab Jamun Pc",
@@ -217,6 +202,30 @@ const QuickAccess = (props) => {
       rate: 280,
       cost: 70,
     },
+    {
+      name: "Jalebi",
+      quantity: ".180",
+      rate_flag: false,
+      image: "/single_jalebi.jpeg",
+      rate: 280,
+      cost: 50,
+    },
+    {
+      name: "Samosa",
+      image: "/samosa.jpeg",
+      quantity: "1",
+      rate_flag: false,
+      rate: 15,
+      cost: 15,
+    },
+    {
+      name: "Bread",
+      quantity: "1",
+      rate_flag: false,
+      image: "/bread.jpg",
+      rate: 20,
+      cost: 20,
+    }
   ];
 
   return (

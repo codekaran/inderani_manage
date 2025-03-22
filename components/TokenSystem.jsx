@@ -23,8 +23,8 @@ const TokenSystem = () => {
 
   const handleTokenSystem = async (event) => {
     event.preventDefault();
-    let receipt = { orderNumber: token, items: buyList, total: totalCost };
-    let response = await fetch("http://192.168.1.4:3000/sales/printToken", {
+    let receipt = { orderNumber: token, items: buyList, total: totalCost};
+    let response = await fetch("http://localhost:3000/sales/printToken", {
       method: "POST",
       body: JSON.stringify(receipt),
       headers: { "Content-Type": "application/json" },
@@ -228,7 +228,7 @@ const TokenSystem = () => {
               className="bg-yellow-500 px-5 mt-10 shadow-lg "
               onClick={handleTokenSystem}
             >
-              Print
+              print
             </button>
           </div>
         </div>
