@@ -1,6 +1,13 @@
 import React from "react";
 
-const SaleSuccess = ({ sale, onNewBill }) => {
+const SaleSuccess = ({
+  sale,
+  onPrintTokenAndBill,
+  onPrintBill,
+  onPrintToken,
+  onNewBill,
+  printing = false,
+}) => {
   if (!sale) return null;
 
   return (
@@ -9,7 +16,9 @@ const SaleSuccess = ({ sale, onNewBill }) => {
 
         {/* Success Icon */}
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-          <span className="text-3xl text-green-600">✓</span>
+          <span className="text-3xl text-green-600">
+            ✓
+          </span>
         </div>
 
         {/* Title */}
@@ -30,7 +39,7 @@ const SaleSuccess = ({ sale, onNewBill }) => {
             </span>
 
             <span className="font-semibold text-gray-800">
-              {sale.bill_number}
+              {String(sale.bill_number).padStart(4, "0")}
             </span>
           </div>
 
@@ -50,7 +59,7 @@ const SaleSuccess = ({ sale, onNewBill }) => {
             </span>
 
             <span className="text-xl font-bold text-gray-900">
-              ₹{sale.total_amount}
+              {Number(sale.total_amount).toFixed(2)}
             </span>
           </div>
 
@@ -63,20 +72,58 @@ const SaleSuccess = ({ sale, onNewBill }) => {
                 </span>
 
                 <span className="font-semibold text-green-600">
-                  ₹{sale.payment.change_amount}
+                  {Number(
+                    sale.payment.change_amount
+                  ).toFixed(2)}
                 </span>
               </div>
             )}
 
         </div>
 
+        {/* Printing Buttons */}
+        <div className="mt-6 space-y-3">
+
+          <button
+            onClick={onPrintTokenAndBill}
+            disabled={printing}
+            className="w-full rounded-xl bg-black py-3 text-lg font-semibold text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            🎟 Token + Bill
+          </button>
+
+          <button
+            onClick={onPrintBill}
+            disabled={printing}
+            className="w-full rounded-xl border border-gray-300 bg-white py-3 text-lg font-semibold text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            🧾 Bill Only
+          </button>
+
+          <button
+            onClick={onPrintToken}
+            disabled={printing}
+            className="w-full rounded-xl border border-gray-300 bg-white py-3 text-lg font-semibold text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            🎟 Token Only
+          </button>
+
+        </div>
+
         {/* New Bill */}
         <button
           onClick={onNewBill}
-          className="mt-6 w-full rounded-xl bg-black py-3 text-lg font-semibold text-white transition hover:bg-gray-800"
+          disabled={printing}
+          className="mt-5 w-full rounded-xl bg-gray-100 py-3 text-lg font-semibold text-gray-700 transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
         >
           New Bill
         </button>
+
+        {printing && (
+          <p className="mt-3 text-center text-sm text-gray-500">
+            Printing...
+          </p>
+        )}
 
       </div>
     </div>

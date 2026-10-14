@@ -242,7 +242,19 @@ function ItemManager() {
               key={product.id}
               className="rounded-xl bg-white p-4 shadow-sm"
             >
-
+              {/* Product Image */}
+              {product.image_url && (
+              <img
+                src={
+                  product.image_url.startsWith("http")
+                    ? product.image_url
+                    : `http://localhost:3000${product.image_url}`
+                }
+                alt={product.name}
+                loading="lazy"
+                className="mb-3 h-40 w-full rounded-lg bg-gray-100 object-cover"
+              />
+            )}
               {/* Product Name */}
               <div className="mb-3">
                 <h2 className="text-lg font-bold text-gray-800">
