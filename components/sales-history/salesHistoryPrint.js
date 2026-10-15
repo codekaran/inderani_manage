@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "http://192.168.1.9:3000";
 
 export const printHistoricalSale = async (sale, type) => {
   const payment = sale.payments?.[0] || {};

@@ -40,7 +40,7 @@ const ItemList = (props) => {
   };
 
   async function fetch_rates() {
-    let response = await fetch("http://localhost:3000/rates");
+    let response = await fetch("http://192.168.1.9:3000/rates");
     response = await response.json();
     console.log(response);
     setRates(response);

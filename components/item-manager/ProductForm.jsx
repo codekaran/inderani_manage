@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://192.168.1.9:3000";
 const SELLING_TYPES = [
   { value: "WEIGHT", label: "Weight" },
   { value: "PIECE", label: "Piece" },

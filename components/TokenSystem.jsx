@@ -13,7 +13,7 @@ const TokenSystem = () => {
   let [token, setToken] = useState(1);
 
   const addSaleToDb = async () => {
-    let response = await fetch("http://localhost:3000/sales/add", {
+    let response = await fetch("http://192.168.1.9:3000/sales/add", {
       method: "POST",
       body: JSON.stringify(buyList),
       headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ const TokenSystem = () => {
   const handleTokenSystem = async (event) => {
     event.preventDefault();
     let receipt = { orderNumber: token, items: buyList, total: totalCost};
-    let response = await fetch("http://localhost:3000/sales/printToken", {
+    let response = await fetch("http://192.168.1.9:3000/sales/printToken", {
       method: "POST",
       body: JSON.stringify(receipt),
       headers: { "Content-Type": "application/json" },
@@ -118,7 +118,7 @@ const TokenSystem = () => {
   };
 
   const fetch_token = async () => {
-    let response = await fetch("http://localhost:3000/sales/getLastToken");
+    let response = await fetch("http://192.168.1.9:3000/sales/getLastToken");
     response = await response.json();
     setToken(response[0].token + 1);
   };

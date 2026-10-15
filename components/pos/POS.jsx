@@ -7,7 +7,7 @@ import PaymentPopup from "./PaymentPopup";
 import SaleSuccess from "./SaleSuccess";
 import DiscountPopup from "./DiscountPopup";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://192.168.1.9:3000";
 
 function POS() {
   const [products, setProducts] = useState([]);
@@ -605,7 +605,7 @@ const handlePrintSale = async (type) => {
 
       <div className="border-t border-gray-100 p-4">
         <p className="text-xs text-gray-400">
-          Inderani Sweets · POS
+          Inderani · POS
         </p>
       </div>
 
@@ -615,10 +615,27 @@ const handlePrintSale = async (type) => {
 
 
       {/* MAIN BILLING AREA */}
-      <main className="flex min-h-0 flex-1 overflow-hidden">
+      <main className="flex h-[calc(100dvh-64px)] min-h-0 w-full overflow-hidden">
 
         {/* LEFT: PRODUCT BROWSING */}
         <section className="flex min-w-0 flex-1 flex-col">
+            
+{/* PRODUCT SEARCH */}
+<div className="shrink-0 border-b border-amber-100 bg-white p-3 sm:px-4">
+  <div className="relative">
+    <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+      ⌕
+    </span>
+
+    <input
+      type="text"
+      placeholder="Search sweets, snacks..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="h-11 w-full rounded-xl border border-gray-200 bg-[#FAFAF9] pl-10 pr-4 text-base outline-none focus:border-[#8B1E1E] focus:ring-2 focus:ring-red-100"
+    />
+  </div>
+</div>
 
           {/* CATEGORY BAR */}
           <div className="shrink-0 border-b border-amber-100 bg-white px-3 py-3 sm:px-4">
@@ -675,7 +692,7 @@ const handlePrintSale = async (type) => {
         </section>
 
         {/* RIGHT: FIXED-WIDTH BILL PANEL */}
-        <aside className="flex w-[340px] shrink-0 flex-col overflow-hidden border-l border-amber-100 bg-white lg:w-[360px] 2xl:w-[400px]">
+        <aside className="flex h-full min-h-0 w-[320px] shrink-0 flex-col overflow-hidden border-l border-amber-100 bg-white lg:w-[360px] 2xl:w-[400px]">
           <Cart
             cart={cart}
             subtotal={subtotal}
@@ -721,19 +738,24 @@ const handlePrintSale = async (type) => {
 
       {/* SALE SUCCESS AND PRINTING */}
       {completedSale && (
-        <SaleSuccess
-          sale={completedSale}
-          onPrintTokenAndBill={() => handlePrintSale("TOKEN_AND_BILL")}
-          onPrintBill={() => handlePrintSale("BILL_ONLY")}
-          onPrintToken={() => handlePrintSale("TOKEN_ONLY")}
-          onNewBill={() => {
-            setCompletedSale(null);
-            setDiscount(null);
-            setCart([]);
-          }}
-          printing={printing}
-        />
-      )}
+  <SaleSuccess
+    sale={completedSale}
+    onPrintTokenAndBill={() => handlePrintSale("TOKEN_AND_BILL")}
+    onPrintBill={() => handlePrintSale("BILL_ONLY")}
+    onPrintToken={() => handlePrintSale("TOKEN_ONLY")}
+    onFinishWithoutPrinting={() => {
+      setCompletedSale(null);
+      setDiscount(null);
+      setCart([]);
+    }}
+    onNewBill={() => {
+      setCompletedSale(null);
+      setDiscount(null);
+      setCart([]);
+    }}
+    printing={printing}
+  />
+)}
     </div>
   );
 }
