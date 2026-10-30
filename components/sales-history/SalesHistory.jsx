@@ -5,7 +5,7 @@ import SalesSummary from "./SalesSummary";
 import SalesTable from "./SalesTable";
 import SaleDetailsPopup from "./SalesDetailPopup";
 
-const API_URL = "http://192.168.1.9:3000";
+const API_URL = "http://localhost:3000";
 
 function SalesHistory() {
   const [sales, setSales] = useState([]);

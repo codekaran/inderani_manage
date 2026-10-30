@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductForm from "./ProductForm";
 
-const API_URL = "http://192.168.1.9:3000";
+const API_URL = "http://localhost:3000";
 
 function ItemManager() {
   const [products, setProducts] = useState([]);
@@ -248,7 +248,7 @@ function ItemManager() {
                 src={
                   product.image_url.startsWith("http")
                     ? product.image_url
-                    : `http://192.168.1.9:3000${product.image_url}`
+                    : `http://localhost:3000${product.image_url}`
                 }
                 alt={product.name}
                 loading="lazy"
